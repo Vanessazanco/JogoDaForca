@@ -35,4 +35,16 @@ public class JogoDaForca {
 
         scanner.close();
     }
+
+    private static boolean verificarLetra(char letra) {
+        boolean letraCorreta = false;
+        for (int i = 0; i < palavraEscolhida.length(); i++) {
+            if (palavraEscolhida.charAt(i) == letra) {
+                palavraEscondida[i] = letra;
+                letraCorreta = true;
+            }
+        }
+        return letraCorreta;
+    }
+
 }
