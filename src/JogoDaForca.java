@@ -36,6 +36,20 @@ public class JogoDaForca {
         scanner.close();
     }
 
+    private static void iniciarJogo() {
+        palavraEscolhida = palavras[(int) (Math.random() * palavras.length)];
+        palavraEscondida = new char[palavraEscolhida.length()];
+        for (int i = 0; i < palavraEscondida.length; i++) {
+            palavraEscondida[i] = '_';
+        }
+        tentativasRestantes = 6;
+        jogoGanho = false;
+    }
+
+    private static void verificarVitoria() {
+        jogoGanho = new String(palavraEscondida).equals(palavraEscolhida);
+    }
+
     private static boolean verificarLetra(char letra) {
         boolean letraCorreta = false;
         for (int i = 0; i < palavraEscolhida.length(); i++) {
