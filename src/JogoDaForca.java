@@ -6,6 +6,7 @@ public class JogoDaForca {
     private static char[] palavraEscondida;
     private static int tentativasRestantes;
     private static boolean jogoGanho;
+    private static int pontuacao;
 
     public static void main(String[] args) {
         iniciarJogo();
@@ -14,14 +15,17 @@ public class JogoDaForca {
         while (tentativasRestantes > 0 && !jogoGanho) {
             System.out.println("Palavra: " + new String(palavraEscondida));
             System.out.println("Tentativas restantes: " + tentativasRestantes);
+            System.out.println("Pontuação: " + pontuacao);
             System.out.print("Digite uma letra: ");
             char letra = scanner.nextLine().toUpperCase().charAt(0);
 
             if (verificarLetra(letra)) {
                 System.out.println("Boa! A letra '" + letra + "' está correta.");
+                pontuacao += 10;
             } else {
                 System.out.println("A letra '" + letra + "' não está na palavra.");
                 tentativasRestantes--;
+                pontuacao -= 5;
             }
 
             verificarVitoria();
@@ -33,6 +37,7 @@ public class JogoDaForca {
             System.out.println("Você perdeu! A palavra era: " + palavraEscolhida);
         }
 
+        System.out.println("Sua pontuação final é: " + pontuacao);
         scanner.close();
     }
 
@@ -43,11 +48,8 @@ public class JogoDaForca {
             palavraEscondida[i] = '_';
         }
         tentativasRestantes = 6;
+        pontuacao = 0;
         jogoGanho = false;
-    }
-
-    private static void verificarVitoria() {
-        jogoGanho = new String(palavraEscondida).equals(palavraEscolhida);
     }
 
     private static boolean verificarLetra(char letra) {
@@ -61,4 +63,7 @@ public class JogoDaForca {
         return letraCorreta;
     }
 
+    private static void verificarVitoria() {
+        jogoGanho = new String(palavraEscondida).equals(palavraEscolhida);
+    }
 }
