@@ -41,6 +41,8 @@ public class JogoDaForca {
         }
 
         System.out.println("Sua pontuação final é: " + pontuacao);
+
+        salvarPontuacaoEmArquivo();
         scanner.close();
     }
 
@@ -77,6 +79,6 @@ public class JogoDaForca {
         } catch (IOException e) {
             System.out.println("Erro ao salvar a pontuação: " + e.getMessage());
         }
-    }ss
+    }
 
 }
