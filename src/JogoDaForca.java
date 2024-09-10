@@ -1,3 +1,6 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class JogoDaForca {
@@ -66,4 +69,14 @@ public class JogoDaForca {
     private static void verificarVitoria() {
         jogoGanho = new String(palavraEscondida).equals(palavraEscolhida);
     }
+    private static void salvarPontuacaoEmArquivo() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("pontuacoes.txt", true))) {
+            writer.write("Pontuação: " + pontuacao + " - Palavra: " + palavraEscolhida + (jogoGanho ? " (Ganhou)" : " (Perdeu)"));
+            writer.newLine();
+            System.out.println("Pontuação salva no arquivo 'pontuacoes.txt'.");
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar a pontuação: " + e.getMessage());
+        }
+    }ss
+
 }
