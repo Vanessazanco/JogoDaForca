@@ -23,7 +23,14 @@ public class JogoDaForca {
         int modoDeJogo = scanner.nextInt();
         scanner.nextLine();
 
-      
+        if (modoDeJogo == 1) {
+            iniciarJogoSingleplayer();
+        } else if (modoDeJogo == 2) {
+            iniciarJogoMultiplayer(scanner);
+        } else {
+            System.out.println("Opção inválida. Saindo do jogo.");
+            return;
+        }
 
         while (tentativasRestantes > 0 && !jogoGanho) {
             System.out.println("Palavra: " + new String(palavraEscondida));
@@ -56,8 +63,14 @@ public class JogoDaForca {
         scanner.close();
     }
 
-    private static void iniciarJogo() {
-        palavraEscolhida = palavras[(int) (Math.random() * palavras.length)];
+    private static void iniciarJogoMultiplayer(Scanner scanner) {
+        System.out.print("Jogador 1, digite a palavra secreta: ");
+        palavraEscolhida = scanner.nextLine().toUpperCase();
+        System.out.println("\n".repeat(50));
+        prepararJogo();
+    }
+
+    private static void prepararJogo() {
         palavraEscondida = new char[palavraEscolhida.length()];
         for (int i = 0; i < palavraEscondida.length; i++) {
             palavraEscondida[i] = '_';
