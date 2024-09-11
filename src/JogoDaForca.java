@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class JogoDaForca {
-    //private static final String[] palavras = {"GATO", "CACHORRO", "COMPUTADOR", "MAMÃO", "LIVRO"};
     private static String palavraEscolhida;
     private static char[] palavraEscondida;
     private static int tentativasRestantes;
@@ -12,7 +11,6 @@ public class JogoDaForca {
     private static int pontuacao;
 
     public static void main(String[] args) {
-        iniciarJogo();
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Bem-vindo ao Jogo da Forca!");
@@ -63,6 +61,11 @@ public class JogoDaForca {
         scanner.close();
     }
 
+    private static void iniciarJogoSingleplayer() {
+        String[] palavras = {"GATO", "CACHORRO", "COMPUTADOR", "MAMÃO", "LIVRO"};
+        palavraEscolhida = palavras[(int) (Math.random() * palavras.length)];
+        prepararJogo();
+    }
     private static void iniciarJogoMultiplayer(Scanner scanner) {
         System.out.print("Jogador 1, digite a palavra secreta: ");
         palavraEscolhida = scanner.nextLine().toUpperCase();
